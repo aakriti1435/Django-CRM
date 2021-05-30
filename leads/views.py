@@ -67,3 +67,9 @@ def updateLead(request, pk):
 
     context={ "lead":lead, "form": form }
     return render(request, "leads/updateLead.html", context)
+
+
+def deleteLead(request,pk):
+    lead= Lead.objects.get(id=pk)
+    lead.delete()
+    return redirect("/leads")
