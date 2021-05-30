@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Lead, Agent
 from .forms import LeadForm, LeadModelForm
 from django.views.generic import TemplateView, ListView, DetailView,CreateView, UpdateView, DeleteView
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -47,6 +48,16 @@ class createLeadView(CreateView):
 
     def get_success_url(self):
         return reverse("leads:leadList")
+
+    def form_valid(self, form):
+        # Send Email
+        send_mail(
+            subject = "New Lead Created", 
+            message = "Go to the site to see the new lead",
+            from_email = "aakriti@gmail.com",
+            recipient_list = ["aakriti1435@gmail.com"]
+        )
+        return super(createLeadView, self).form_valid(form)
 
 
 def createLead(request):
