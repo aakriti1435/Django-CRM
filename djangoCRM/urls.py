@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from leads.views import homePage,HomePageView
+from leads.views import homePage, HomePageView, SignUpView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
@@ -12,6 +12,7 @@ urlpatterns = [
     path("leads/",include('leads.urls', namespace="leads")),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
+    path("signup/", SignUpView.as_view(), name="signup"),
 ]
 
 if settings.DEBUG:
