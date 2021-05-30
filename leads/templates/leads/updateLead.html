@@ -7,7 +7,7 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<a href="/leads">Go Back to Leads</a>
+		<a href="{% url 'leads:leadList' %}">Go Back to Leads</a>
 		<hr />
 		<h1>Update Lead: {{lead.firstName}} {{lead.lastName}}</h1>
 		<form action="." method="POST">
