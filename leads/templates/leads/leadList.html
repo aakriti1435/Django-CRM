@@ -1,29 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<style>
-			.lead {
-				padding: 10px 6px;
-				margin-top: 10px;
-				background-color: #f6f6f6;
-				width: 100%;
-			}
-		</style>
-	</head>
-	<body>
-		<a href="{% url 'leads:createLead' %}">Create a New Lead</a>
-		<hr />
-		<h1>Our Leads</h1>
-		{% for lead in leads %}
-		<div class="lead">
-			<a href="{% url 'leads:leadDetail' lead.pk %}">
-				{{lead.firstName}} {{lead.lastName}}
-			</a>
-		</div>
-		{% endfor %}
-	</body>
-</html>
+{% extends "base.html" %} {% block content %}
+<a href="{% url 'leads:createLead' %}">Create a New Lead</a>
+<hr />
+<h1>Our Leads</h1>
+{% for lead in leads %}
+<div class="lead">
+	<a href="{% url 'leads:leadDetail' lead.pk %}">
+		{{lead.firstName}} {{lead.lastName}}
+	</a>
+</div>
+{% endfor %} {% endblock content %}
