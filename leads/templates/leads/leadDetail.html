@@ -15,13 +15,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>Our Leads</h1>
-		{% for lead in leads %}
-		<div class="lead">
-			<a href="/leads/{{lead.pk}}/">
-				{{lead.firstName}} {{lead.lastName}}
-			</a>
-		</div>
-		{% endfor %}
+		<h1>Lead Details of {{lead.firstName}}</h1>
+		<p>This persons age: {{lead.age}}</p>
 	</body>
 </html>
