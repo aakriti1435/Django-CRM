@@ -1,7 +1,7 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% load tailwind_filters %} {% block content %}
 
 <section class="text-gray-600 body-font overflow-hidden">
-	<div class="container px-5 py-24 mx-auto">
+	<div class="container px-5 py-12 mx-auto">
 		<div class="lg:w-4/5 mx-auto flex flex-wrap">
 			<div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
 				<h2 class="text-sm title-font text-gray-500 tracking-widest">
@@ -47,15 +47,28 @@
 					>
 				</div>
 				<form action="." method="POST">
-					{% csrf_token %} {{ form.as_p }}
-					<button type="submit">Submit</button>
+					{% csrf_token %} {{ form|crispy}}
+					<button
+						class="
+							w-full
+							bg-blue-500
+							text-white
+							hover:bg-blue-600
+							px-3
+							py-2
+							rounded-md
+						"
+						type="submit"
+					>
+						Update Details
+					</button>
 				</form>
-				<div class="flex">
+				<div class="mt-5 py-5 border-t border-gray-200">
 					<a
 						href="{% url 'leads:deleteLead' lead.pk %}"
 						class="
-							ml-auto
-							flex
+							w-1/2
+							mt-3
 							text-white
 							bg-indigo-500
 							border-0
@@ -66,7 +79,7 @@
 							rounded
 						"
 					>
-						Delete
+						Delete Lead
 					</a>
 				</div>
 			</div>
