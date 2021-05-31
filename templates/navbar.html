@@ -51,6 +51,11 @@
 				class="mr-6 hover:text-gray-900"
 				>Leads</a
 			>
+			<a
+				href="{% url 'agents:agentList' %}"
+				class="mr-6 hover:text-gray-900"
+				>Agents</a
+			>
 			{% if not request.user.is_authenticated %}
 			<a href="{% url 'signup' %}" class="mr-6 hover:text-gray-900"
 				>SignUp</a
