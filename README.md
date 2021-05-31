@@ -15,6 +15,7 @@
 -   python manage.py startapp leads
 -   python manage.py migrate
 -   python manage.py createsuperuser
+-   python manage.py test
 
 To add templates folder in root project folder
 'DIRS':[BASE_DIR / "templates"]
