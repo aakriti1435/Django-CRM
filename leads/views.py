@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from .models import Lead, Agent, Category
-from .forms import LeadForm, LeadModelForm, CustomUserCreationForm, AssignAgentForm
+from .forms import LeadForm, LeadModelForm, CustomUserCreationForm, AssignAgentForm, LeadCategoryUpdateForm
 from django.views.generic import TemplateView, ListView, DetailView,CreateView, UpdateView, DeleteView, FormView
 from django.core.mail import send_mail
 from agents.mixins import OrganisorAndLoginRequiredMixin
@@ -253,6 +253,26 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
             queryset = Category.objects.filter(organisation = user.userprofile)
         else:
             queryset = Category.objects.filter(organisation = user.agent.organisation)   
+        return queryset
+
+
+class UpdateCategoryView(LoginRequiredMixin, UpdateView):
+    template_name = "leads/updateCategory.html"
+    form_class = LeadCategoryUpdateForm
+
+    def get_success_url(self):
+        return reverse("leads:leadDetail", kwargs={"pk": self.get_object().id})
+
+    def get_queryset(self):
+        user = self.request.user
+
+        # Initial QuerySet of leads for entire organisation
+        if user.is_organisor:
+            queryset = Lead.objects.filter(organisation = user.userprofile)
+        else:
+            queryset = Lead.objects.filter(organisation = user.agent.organisation)   
+            # Filter leads for current agent
+            queryset = queryset.filter(agent__user = user)
         return queryset
 
 

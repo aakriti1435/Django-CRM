@@ -23,16 +23,6 @@
 						>Description</a
 					>
 					<a
-						class="
-							flex-grow
-							border-b-2 border-gray-300
-							py-2
-							text-lg
-							px-1
-						"
-						>Reviews</a
-					>
-					<a
 						href="{% url 'leads:updateLead' lead.pk %}"
 						class="
 							flex-grow
@@ -42,7 +32,18 @@
 							text-lg
 							px-1
 						"
-						>Update</a
+						>Update Details</a
+					>
+					<a
+						href="{% url 'leads:updateCategory' lead.pk %}"
+						class="
+							flex-grow
+							border-b-2 border-gray-300
+							py-2
+							text-lg
+							px-1
+						"
+						>Update Category</a
 					>
 				</div>
 				<form action="." method="POST">

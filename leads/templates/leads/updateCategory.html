@@ -15,8 +15,7 @@
 						href="{% url 'leads:leadDetail' lead.pk %}"
 						class="
 							flex-grow
-							text-indigo-500
-							border-b-2 border-indigo-500
+							border-b-2 border-gray-300
 							py-2
 							text-lg
 							px-1
@@ -38,7 +37,8 @@
 						href="{% url 'leads:updateCategory' lead.pk %}"
 						class="
 							flex-grow
-							border-b-2 border-gray-300
+							text-indigo-500
+							border-b-2 border-indigo-500
 							py-2
 							text-lg
 							px-1
@@ -46,25 +46,11 @@
 						>Update Category</a
 					>
 				</div>
-				<p class="leading-relaxed mb-4">
-					Fam locavore kickstarter distillery. Mixtape chillwave
-					tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam
-					inxigo juiceramps cornhole raw denim forage brooklyn.
-					Everyday carry +1 seitan poutine tumeric. Gastropub blue
-					bottle austin listicle pour-over, neutra jean.
-				</p>
-				<div class="flex border-t border-gray-200 py-2">
-					<span class="text-gray-500">Age</span>
-					<span class="ml-auto text-gray-900">{{lead.age}}</span>
-				</div>
-				<div class="flex border-t border-gray-200 py-2">
-					<span class="text-gray-500">Location</span>
-					<span class="ml-auto text-gray-900">Chandigarh</span>
-				</div>
-				<div class="flex border-t border-b mb-6 border-gray-200 py-2">
-					<span class="text-gray-500">Phone Number</span>
-					<span class="ml-auto text-gray-900">9796567567</span>
-				</div>
+				<form action="." method="POST">
+					{% csrf_token %} {{ form.as_p }}
+					<button type="submit">Submit</button>
+				</form>
+
 				<div class="flex">
 					<button
 						class="
