@@ -47,6 +47,19 @@ class AgentDetailView(LoginRequiredMixin, generic.DetailView):
         return Agent.objects.all()
 
 
+class AgentDeleteView(LoginRequiredMixin, generic.DeleteView):
+    template_name = "agents/agentDelete.html"
+    context_object_name = "agent"
+
+    def get_queryset(self):
+        return Agent.objects.all()
+
+    def get_success_url(self):
+        return reverse("agents:agentList")
+
+    
+
+
 
 
 
