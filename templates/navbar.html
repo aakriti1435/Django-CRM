@@ -52,14 +52,14 @@
 			>
 			{% else %} {% if request.user.is_organisor %}
 			<a
-				href="{% url 'leads:leadList' %}"
+				href="{% url 'agents:agentList' %}"
 				class="mr-6 hover:text-gray-900"
 				>Agents</a
 			>
 			{% endif %}
 
 			<a
-				href="{% url 'agents:agentList' %}"
+				href="{% url 'leads:leadList' %}"
 				class="mr-6 hover:text-gray-900"
 				>Leads</a
 			>

@@ -3,10 +3,11 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from leads.models import Agent
 from .forms import AgentModelForm
+from .mixins import OrganisorAndLoginRequiredMixin
 
 # Create your views here.
 
-class AgentListView(LoginRequiredMixin, generic.ListView):
+class AgentListView(OrganisorAndLoginRequiredMixin, generic.ListView):
     template_name = "agents/agentList.html"
 
     def get_queryset(self):
@@ -14,7 +15,7 @@ class AgentListView(LoginRequiredMixin, generic.ListView):
         return Agent.objects.filter(organisation = organisation)
 
 
-class CreateAgentView(LoginRequiredMixin, generic.CreateView):
+class CreateAgentView(OrganisorAndLoginRequiredMixin, generic.CreateView):
     template_name = "agents/createAgent.html"
     form_class  = AgentModelForm
 
@@ -28,7 +29,7 @@ class CreateAgentView(LoginRequiredMixin, generic.CreateView):
         return super(CreateAgentView, self).form_valid(form)
 
 
-class UpdateAgentView(LoginRequiredMixin, generic.UpdateView):
+class UpdateAgentView(OrganisorAndLoginRequiredMixin, generic.UpdateView):
     template_name = "agents/updateAgent.html"
     form_class  = AgentModelForm
 
@@ -41,7 +42,7 @@ class UpdateAgentView(LoginRequiredMixin, generic.UpdateView):
 
 
 
-class AgentDetailView(LoginRequiredMixin, generic.DetailView):
+class AgentDetailView(OrganisorAndLoginRequiredMixin, generic.DetailView):
     template_name = "agents/agentDetail.html"
     context_object_name = "agent"
 
@@ -50,7 +51,7 @@ class AgentDetailView(LoginRequiredMixin, generic.DetailView):
         return Agent.objects.filter(organisation = organisation)
 
 
-class AgentDeleteView(LoginRequiredMixin, generic.DeleteView):
+class AgentDeleteView(OrganisorAndLoginRequiredMixin, generic.DeleteView):
     template_name = "agents/agentDelete.html"
     context_object_name = "agent"
 
