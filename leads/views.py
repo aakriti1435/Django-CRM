@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from .models import Lead, Agent
-from .forms import LeadForm, LeadModelForm, CustomUserCreationForm
-from django.views.generic import TemplateView, ListView, DetailView,CreateView, UpdateView, DeleteView
+from .forms import LeadForm, LeadModelForm, CustomUserCreationForm, AssignAgentForm
+from django.views.generic import TemplateView, ListView, DetailView,CreateView, UpdateView, DeleteView, FormView
 from django.core.mail import send_mail
 from agents.mixins import OrganisorAndLoginRequiredMixin
 
@@ -180,3 +180,39 @@ def deleteLead(request,pk):
     lead= Lead.objects.get(id=pk)
     lead.delete()
     return redirect("/leads")
+
+
+class AssignAgentView(OrganisorAndLoginRequiredMixin, FormView):
+    template_name = "leads/assignAgent.html"
+    form_class = AssignAgentForm
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(AssignAgentView, self).get_form_kwargs(**kwargs)
+        kwargs.update({
+            "request": self.request
+        })
+        return kwargs
+
+    def get_success_url(self):
+        return reverse("leads:leadList")
+
+    def form_valid(self, form):
+        agent = form.cleaned_data["agent"]
+        lead = Lead.objects.get(id = self.kwargs["pk"])
+        lead.agent = agent
+        lead.save()
+        return super(AssignAgentView, self).form_valid(form)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
