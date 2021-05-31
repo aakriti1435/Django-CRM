@@ -13,10 +13,10 @@
 					text-gray-900
 				"
 			>
-				Categories
+				{{ category.name }}
 			</h1>
 			<p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-				These categories segment the leads.
+				These are the leads under this category.
 			</p>
 		</div>
 		<div class="lg:w-2/3 w-full mx-auto overflow-auto">
@@ -35,7 +35,7 @@
 								rounded-tl rounded-bl
 							"
 						>
-							Name
+							First Name
 						</th>
 						<th
 							class="
@@ -48,30 +48,18 @@
 								bg-gray-100
 							"
 						>
-							Lead Count
+							Last Name
 						</th>
 					</tr>
 				</thead>
 				<tbody>
+					{% for lead in category.leads.all %}
 					<tr>
 						<td class="px-4 py-3 border-t-2 border-gray-200">
-							Unassigned
+							{{ lead.firstName }}
 						</td>
 						<td class="px-4 py-3 border-t-2 border-gray-200">
-							{{unassignedLeadCount}}
-						</td>
-					</tr>
-					{% for category in categoryList %}
-					<tr>
-						<td class="px-4 py-3 border-t-2 border-gray-200">
-							<a
-								href="{% url 'leads:categoryDetail' category.pk %}"
-								>{{category.name}}</a
-							>
-						</td>
-
-						<td class="px-4 py-3 border-t-2 border-gray-200">
-							TODO
+							{{ lead.lastName }}
 						</td>
 					</tr>
 					{% endfor %}
