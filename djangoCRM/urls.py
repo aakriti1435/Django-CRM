@@ -10,6 +10,7 @@ urlpatterns = [
     # path('', homePage, name='homePage'),
     path('', HomePageView.as_view(), name='homePage'),
     path("leads/",include('leads.urls', namespace="leads")),
+    path("agents/",include('agents.urls', namespace="agents")),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("signup/", SignUpView.as_view(), name="signup"),
