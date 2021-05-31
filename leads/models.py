@@ -39,6 +39,7 @@ class Agent(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=30)
+    organisation = models.ForeignKey("UserProfile", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
