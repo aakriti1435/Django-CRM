@@ -20,6 +20,7 @@ class SignUpView(CreateView):
 class HomePageView(TemplateView):
     template_name = "homePage.html"
 
+
 def homePage(request):
     return render(request, "homePage.html")
 
@@ -51,8 +52,20 @@ def leadList(request):
 
 class leadDetailView(LoginRequiredMixin, DetailView):
     template_name = "leads/leadDetail.html"
-    queryset = Lead.objects.all()
     context_object_name = "lead" #Default name is object_list
+
+    def get_queryset(self):
+        user = self.request.user
+
+        # Initial QuerySet of leads for entire organisation
+        if user.is_organisor:
+            queryset = Lead.objects.filter(organisation = user.userprofile)
+        else:
+            queryset = Lead.objects.filter(organisation = user.agent.organisation)   
+            # Filter leads for current agent
+            queryset = queryset.filter(agent__user = user)
+        return queryset
+
 
 def leadDetail(request, pk):
     print(pk)
@@ -110,10 +123,14 @@ def createLead(request):
 class updateLeadView(OrganisorAndLoginRequiredMixin, UpdateView):
     template_name = "leads/updateLead.html"
     form_class = LeadModelForm
-    queryset = Lead.objects.all()
 
     def get_success_url(self):
         return reverse("leads:leadList")
+
+    def get_queryset(self):
+        user = self.request.user
+        # Initial QuerySet of leads for entire organisation
+        return Lead.objects.filter(organisation = user.userprofile)
 
 
 def updateLead(request, pk):
@@ -139,10 +156,15 @@ def updateLead(request, pk):
 
 class deleteLeadView(OrganisorAndLoginRequiredMixin, DeleteView):
     template_name = "leads/deleteLead.html"
-    queryset = Lead.objects.all()
+    
+    def get_queryset(self):
+        user = self.request.user
+        # Initial QuerySet of leads for entire organisation
+        return Lead.objects.filter(organisation = user.userprofile)
 
     def get_success_url(self):
         return reverse("leads:leadList")
+
 
 def deleteLead(request,pk):
     lead= Lead.objects.get(id=pk)
