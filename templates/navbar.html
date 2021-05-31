@@ -46,19 +46,22 @@
 				justify-center
 			"
 		>
-			<a
-				href="{% url 'leads:leadList' %}"
-				class="mr-6 hover:text-gray-900"
-				>Leads</a
-			>
-			<a
-				href="{% url 'agents:agentList' %}"
-				class="mr-6 hover:text-gray-900"
-				>Agents</a
-			>
 			{% if not request.user.is_authenticated %}
 			<a href="{% url 'signup' %}" class="mr-6 hover:text-gray-900"
 				>SignUp</a
+			>
+			{% else %} {% if request.user.is_organisor %}
+			<a
+				href="{% url 'leads:leadList' %}"
+				class="mr-6 hover:text-gray-900"
+				>Agents</a
+			>
+			{% endif %}
+
+			<a
+				href="{% url 'agents:agentList' %}"
+				class="mr-6 hover:text-gray-900"
+				>Leads</a
 			>
 			{% endif %}
 		</nav>
