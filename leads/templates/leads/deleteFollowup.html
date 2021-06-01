@@ -1,13 +1,17 @@
 {% extends "base.html" %} {% load tailwind_filters %} {% block content %}
 
 <div class="max-w-lg mx-auto">
-	<div class="pt-3 border-b border-gray-300 mt-2 mb-4 pb-2">
-		<a class="hover:text-blue-500" href="{% url 'leads:leadList' %}"
-			>Go Back to Leads</a
+	<div class="border-b border-gray-300 mb-4 pb-2">
+		<a
+			class="hover:text-blue-500"
+			href="{% url 'leads:leadDetail' object.lead.pk %}"
+			>Go Back to FollowUps</a
 		>
 	</div>
-	<div class="pt-3 border-b border-gray-300 mt-2 mb-4 pb-2">
-		<h1 class="text-xl">Are you sure you want to Delete this Lead?</h1>
+	<div class="py-5 border-t border-gray-200">
+		<h1 class="text-xl text-gray-800">
+			Are you sure you want to this FollowUp?
+		</h1>
 	</div>
 	<form method="POST">
 		{% csrf_token %} {{ form|crispy }}
@@ -23,7 +27,7 @@
 			"
 			type="submit"
 		>
-			Delete Lead
+			Delete FollowUp
 		</button>
 	</form>
 </div>

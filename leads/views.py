@@ -395,7 +395,7 @@ class LeadCategoryUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class FollowUpCreateView(LoginRequiredMixin,CreateView):
-    template_name = "leads/followup_create.html"
+    template_name = "leads/createFollowup.html"
     form_class = FollowUpModelForm
 
     def get_success_url(self):
@@ -417,7 +417,7 @@ class FollowUpCreateView(LoginRequiredMixin,CreateView):
 
 
 class FollowUpUpdateView(LoginRequiredMixin,UpdateView):
-    template_name = "leads/followup_update.html"
+    template_name = "leads/updateFollowup.html"
     form_class = FollowUpModelForm
 
     def get_queryset(self):
@@ -436,7 +436,7 @@ class FollowUpUpdateView(LoginRequiredMixin,UpdateView):
 
 
 class FollowUpDeleteView(OrganisorAndLoginRequiredMixin, DeleteView):
-    template_name = "leads/followup_delete.html"
+    template_name = "leads/deleteFollowup.html"
 
     def get_success_url(self):
         followup = FollowUp.objects.get(id=self.kwargs["pk"])

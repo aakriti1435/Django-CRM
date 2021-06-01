@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% load tailwind_filters %} {% block content %}
+
+<div class="max-w-lg mx-auto">
+	<div class="border-b border-gray-300 mb-4 pb-2">
+		<a
+			class="hover:text-blue-500"
+			href="{% url 'leads:leadDetail' object.lead.pk %}"
+			>Go Back to FollowUps</a
+		>
+	</div>
+	<form method="POST">
+		{% csrf_token %} {{ form|crispy }}
+		<button
+			class="
+				w-full
+				bg-blue-500
+				text-white
+				hover:bg-blue-600
+				px-3
+				py-2
+				rounded-md
+			"
+			type="submit"
+		>
+			Update FollowUp
+		</button>
+	</form>
+
+	<div class="mt-5 pt-5 border-t border-gray-200">
+		<a
+			href="{% url 'leads:lead-followup-delete' object.pk %}"
+			class="text-white bg-red-500 hover:bg-red-600 px-10 py-2 rounded-md"
+		>
+			Delete
+		</a>
+	</div>
+</div>
+
+{% endblock content %}

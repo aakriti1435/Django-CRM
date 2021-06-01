@@ -53,7 +53,7 @@ class FollowUp(models.Model):
     file = models.FileField(null=True, blank=True, upload_to=handle_upload_follow_ups)
 
     def __str__(self):
-        return f"{self.lead.first_name} {self.lead.last_name}"
+        return f"{self.lead.firstName} {self.lead.lastName}"
 
 
 class Agent(models.Model):

@@ -32,7 +32,7 @@ urlpatterns = [
     path("<int:pk>/updateCategory/", LeadCategoryUpdateView.as_view(), name='updateLeadCategory'),
     
     path('json/', LeadJsonView.as_view(), name='lead-list-json'),
-    path('<int:pk>/followups/create/', FollowUpCreateView.as_view(), name='lead-followup-create'),
+    path('<int:pk>/followups/create/', FollowUpCreateView.as_view(), name='createLeadFollowup'),
     path('followups/<int:pk>/', FollowUpUpdateView.as_view(), name='lead-followup-update'),
     path('followups/<int:pk>/delete/', FollowUpDeleteView.as_view(), name='lead-followup-delete'),
     path('categories/<int:pk>/update/', UpdateCategoryView.as_view(), name='categoryUpdate'),

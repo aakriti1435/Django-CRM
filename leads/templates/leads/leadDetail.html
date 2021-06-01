@@ -1,8 +1,8 @@
 {% extends "base.html" %} {% block content %}
 
 <section class="text-gray-600 body-font overflow-hidden">
-	<div class="container px-5 py-8 mx-auto">
-		<div class="lg:w-4/5 mx-auto flex flex-wrap">
+	<div class="container px-5 py-4 mx-auto">
+		<div class="mx-auto flex flex-wrap">
 			<div class="w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
 				<div class="w-full flex items-center justify-between space-x-6">
 					<div class="flex-1 truncate">
@@ -99,7 +99,7 @@
 			</div>
 
 			<a
-				href="{% url 'leads:lead-followup-create' lead.pk %}"
+				href="{% url 'leads:createLeadFollowup' lead.pk %}"
 				class="
 					text-white
 					bg-blue-700
@@ -113,7 +113,7 @@
 		</div>
 		{% for followup in lead.followups.all %}
 		<div class="mt-5 shadow px-4 sm:px-6">
-			<div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+			<div class="pt-4 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
 				<dt class="text-sm font-medium text-gray-500">
 					Notes (<a
 						href="{% url 'leads:lead-followup-update' followup.pk %}"
@@ -126,7 +126,7 @@
 				</dd>
 			</div>
 			{% if followup.file %}
-			<div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+			<div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
 				<dt class="text-sm font-medium text-gray-500">Attachments</dt>
 				<dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
 					<ul
