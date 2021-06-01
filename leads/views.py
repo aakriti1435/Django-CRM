@@ -161,7 +161,7 @@ class updateLeadView(OrganisorAndLoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.save()
         messages.info(self.request, "You have successfully updated this lead")
-        return super(LeadUpdateView, self).form_valid(form)
+        return super(updateLeadView, self).form_valid(form)
 
 
 def updateLead(request, pk):

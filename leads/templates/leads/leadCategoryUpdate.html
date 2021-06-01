@@ -1,9 +1,16 @@
 {% extends "base.html" %} {% load tailwind_filters %} {% block content %}
 
 <section class="text-gray-600 body-font overflow-hidden">
-	<div class="container px-5 py-16 mx-auto">
+	<div class="container px-5 py-8 mx-auto">
 		<div class="lg:w-4/5 mx-auto flex flex-wrap">
-			<div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+			<div class="w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+				<div class="border-b border-gray-300 mb-4 pb-2">
+					<a
+						class="hover:text-blue-500"
+						href="{% url 'leads:leadList' %}"
+						>Go Back to Leads</a
+					>
+				</div>
 				<h2 class="text-sm title-font text-gray-500 tracking-widest">
 					Lead
 				</h2>
@@ -64,18 +71,6 @@
 					</button>
 				</form>
 			</div>
-			<img
-				alt="ecommerce"
-				class="
-					lg:w-1/2
-					w-full
-					lg:h-auto
-					h-64
-					object-cover object-center
-					rounded
-				"
-				src="https://dummyimage.com/400x400"
-			/>
 		</div>
 	</div>
 </section>

@@ -30,6 +30,7 @@ urlpatterns = [
     path("categories/", CategoryListView.as_view(), name="categoryList"),
     path("categoryDetail/<int:pk>/", CategoryDetailView.as_view(), name="categoryDetail"),
     path("<int:pk>/updateCategory/", LeadCategoryUpdateView.as_view(), name='updateLeadCategory'),
+    
     path('json/', LeadJsonView.as_view(), name='lead-list-json'),
     path('<int:pk>/followups/create/', FollowUpCreateView.as_view(), name='lead-followup-create'),
     path('followups/<int:pk>/', FollowUpUpdateView.as_view(), name='lead-followup-update'),
