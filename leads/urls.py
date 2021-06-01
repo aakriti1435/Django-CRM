@@ -1,5 +1,22 @@
 from django.urls import path
-from .views import (leadList, leadDetail, createLead, updateLead, deleteLead, leadListView, leadDetailView, createLeadView,updateLeadView, updateLeadView, deleteLeadView, AssignAgentView,CategoryListView, CategoryDetailView, UpdateCategoryView)
+from .views import (
+    leadListView, 
+    leadDetailView, 
+    createLeadView,
+    updateLeadView, 
+    deleteLeadView, 
+    AssignAgentView,
+    CategoryListView,
+    CategoryDetailView, 
+    UpdateCategoryView,
+    FollowUpCreateView,
+    FollowUpUpdateView,
+    FollowUpDeleteView,
+    LeadJsonView,
+    LeadCategoryUpdateView,
+    CategoryDeleteView,
+    CategoryCreateView
+)
 
 app_name="leads"
 
@@ -12,5 +29,12 @@ urlpatterns = [
     path("<int:pk>/assignAgent/", AssignAgentView.as_view(), name='assignAgent'),
     path("categories/", CategoryListView.as_view(), name="categoryList"),
     path("categoryDetail/<int:pk>/", CategoryDetailView.as_view(), name="categoryDetail"),
-    path("<int:pk>/updateCategory/", UpdateCategoryView.as_view(), name='updateCategory'),
+    path("<int:pk>/updateCategory/", LeadCategoryUpdateView.as_view(), name='updateLeadCategory'),
+    path('json/', LeadJsonView.as_view(), name='lead-list-json'),
+    path('<int:pk>/followups/create/', FollowUpCreateView.as_view(), name='lead-followup-create'),
+    path('followups/<int:pk>/', FollowUpUpdateView.as_view(), name='lead-followup-update'),
+    path('followups/<int:pk>/delete/', FollowUpDeleteView.as_view(), name='lead-followup-delete'),
+    path('categories/<int:pk>/update/', UpdateCategoryView.as_view(), name='categoryUpdate'),
+    path('categories/<int:pk>/delete/', CategoryDeleteView.as_view(), name='categoryDelete'),
+    path('createCategory/', CategoryCreateView.as_view(), name='categoryCreate'),
 ]
