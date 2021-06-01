@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from leads.views import homePage, HomePageView, SignUpView
+from leads.views import homePage, HomePageView, SignUpView, DashboardView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import (
@@ -16,6 +16,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', homePage, name='homePage'),
     path('', HomePageView.as_view(), name='homePage'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
     path("leads/",include('leads.urls', namespace="leads")),
     path("agents/",include('agents.urls', namespace="agents")),
     path("login/", LoginView.as_view(), name="login"),
@@ -29,3 +30,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

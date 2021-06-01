@@ -24,7 +24,7 @@ class LeadModelForm(forms.ModelForm):
     class Meta:
         model = Lead
         fields = (
-            'firstName','lastName','age','agent'
+            'firstName','lastName','age','agent', 'description', 'phoneNumber','email','profile_picture'
         )
 
 

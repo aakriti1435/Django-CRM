@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
-    'crispy_tailwind',
     'leads',
-    'agents'
+    'agents',
+    'crispy_forms',
+    "crispy_tailwind",
+    'tailwind',
+    'theme',
 ]
 
 MIDDLEWARE = [
@@ -122,10 +124,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = "media_root"
+
 STATIC_ROOT = "static_root"
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTH_USER_MODEL = 'leads.User'
 
@@ -137,5 +147,7 @@ LOGIN_URL = "/login"
 
 LOGOUT_REDIRECT_URL = "/"
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
 CRISPY_TEMPLATE_PACK = 'tailwind'
