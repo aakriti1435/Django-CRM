@@ -2,22 +2,35 @@
 
 <section class="text-gray-600 body-font">
 	<div class="container px-5 py-12 mx-auto">
-		<div class="flex flex-col text-center w-full mb-10">
-			<h1
-				class="
-					sm:text-4xl
-					text-3xl
-					font-medium
-					title-font
-					mb-2
-					text-gray-900
-				"
-			>
-				{{ category.name }}
-			</h1>
-			<p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-				These are the leads under this category.
-			</p>
+		<div
+			class="
+				mb-6
+				py-3
+				flex
+				justify-between
+				items-center
+				border-b border-gray-200
+			"
+		>
+			<div>
+				<h1 class="text-4xl text-gray-800">{{ category.name }}</h1>
+				<p class="mx-auto leading-relaxed text-base">
+					These are the leads under this category.
+				</p>
+			</div>
+
+			<div>
+				<a
+					class="text-gray-500 hover:text-blue-500 mr-5"
+					href="{% url 'leads:categoryUpdate' category.pk %}"
+					>Update Category</a
+				>
+				<a
+					class="text-gray-500 hover:text-blue-500"
+					href="{% url 'leads:categoryDelete' category.pk %}"
+					>Delete Category</a
+				>
+			</div>
 		</div>
 		<div class="lg:w-2/3 w-full mx-auto overflow-auto">
 			<table class="table-auto w-full text-left whitespace-no-wrap">

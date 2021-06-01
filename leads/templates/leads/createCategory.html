@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% load tailwind_filters %} {% block content %}
+
+<div class="max-w-lg mx-auto">
+	<div class="border-b border-gray-300 mb-4 pb-2">
+		<a class="hover:text-blue-500" href="{% url 'leads:categoryList' %}"
+			>Go Back to Categories</a
+		>
+	</div>
+	<form method="POST">
+		{% csrf_token %} {{ form|crispy }}
+		<button
+			class="
+				w-full
+				bg-blue-500
+				text-white
+				hover:bg-blue-600
+				px-3
+				py-2
+				rounded-md
+			"
+			type="submit"
+		>
+			Create New Category
+		</button>
+	</form>
+</div>
+
+{% endblock content %}

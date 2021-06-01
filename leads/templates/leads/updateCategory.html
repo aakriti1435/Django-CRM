@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% load tailwind_filters %} {% block content %}
+
+<div class="max-w-lg mx-auto">
+	<div class="border-b border-gray-300 mb-4 pb-2">
+		<a class="hover:text-blue-500" href="{% url 'leads:categoryList' %}"
+			>Go Back to Categories</a
+		>
+	</div>
+	{% comment %}
+	<div class="py-5 border-t border-gray-200">
+		<h1 class="text-2xl text-gray-800">Update {{ object.name }}</h1>
+	</div>
+	{% endcomment %}
+	<form method="POST">
+		{% csrf_token %} {{ form|crispy }}
+		<button
+			class="
+				w-full
+				bg-blue-500
+				text-white
+				hover:bg-blue-600
+				px-3
+				py-2
+				rounded-md
+			"
+			type="submit"
+		>
+			Update Category
+		</button>
+	</form>
+</div>
+
+{% endblock content %}

@@ -281,7 +281,7 @@ class CategoryCreateView(OrganisorAndLoginRequiredMixin, CreateView):
     form_class = CategoryModelForm
 
     def get_success_url(self):
-        return reverse("leads:category-list")
+        return reverse("leads:categoryList")
 
     def form_valid(self, form):
         category = form.save(commit=False)
@@ -347,7 +347,7 @@ class CategoryDeleteView(OrganisorAndLoginRequiredMixin, DeleteView):
     template_name = "leads/deleteCategory.html"
 
     def get_success_url(self):
-        return reverse("leads:category-list")
+        return reverse("leads:categoryList")
 
     def get_queryset(self):
         user = self.request.user
@@ -379,7 +379,7 @@ class LeadCategoryUpdateView(LoginRequiredMixin, UpdateView):
         return queryset
 
     def get_success_url(self):
-        return reverse("leads:lead-detail", kwargs={"pk": self.get_object().id})
+        return reverse("leads:leadDetail", kwargs={"pk": self.get_object().id})
 
     def form_valid(self, form):
         lead_before_update = self.get_object()
@@ -399,7 +399,7 @@ class FollowUpCreateView(LoginRequiredMixin,CreateView):
     form_class = FollowUpModelForm
 
     def get_success_url(self):
-        return reverse("leads:lead-detail", kwargs={"pk": self.kwargs["pk"]})
+        return reverse("leads:leadDetail", kwargs={"pk": self.kwargs["pk"]})
 
     def get_context_data(self, **kwargs):
         context = super(FollowUpCreateView, self).get_context_data(**kwargs)
@@ -432,7 +432,7 @@ class FollowUpUpdateView(LoginRequiredMixin,UpdateView):
         return queryset
 
     def get_success_url(self):
-        return reverse("leads:lead-detail", kwargs={"pk": self.get_object().lead.id})
+        return reverse("leads:leadDetail", kwargs={"pk": self.get_object().lead.id})
 
 
 class FollowUpDeleteView(OrganisorAndLoginRequiredMixin, DeleteView):
@@ -440,7 +440,7 @@ class FollowUpDeleteView(OrganisorAndLoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         followup = FollowUp.objects.get(id=self.kwargs["pk"])
-        return reverse("leads:lead-detail", kwargs={"pk": followup.lead.pk})
+        return reverse("leads:leadDetail", kwargs={"pk": followup.lead.pk})
 
     def get_queryset(self):
         user = self.request.user
